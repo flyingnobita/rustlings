@@ -4,7 +4,10 @@
 // I AM NOT DONE
 
 enum Message {
-    // TODO: implement the message variant types based on their usage below
+    Quit,
+    Echo(String),
+    Move(Point),
+    ChangeColor(State.color),
 }
 
 struct Point {
@@ -37,6 +40,12 @@ impl State {
 
     fn process(&mut self, message: Message) {
         // TODO: create a match expression to process the different message variants
+        match message {
+            Message::ChangeColor(color) => self.change_color(color),
+            Message::Echo(s) => self.echo(s),
+            Message::Move(Point) => self.move_position(Point),
+            Message::Quit => self.quit(),
+        }
     }
 }
 
