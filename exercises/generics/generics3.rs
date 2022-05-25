@@ -10,25 +10,16 @@
 
 // Execute 'rustlings hint generics3' for hints!
 
-// I AM NOT DONE
+use std::fmt::Display;
 
-use std::fmt;
-
-pub struct ReportCard<T: fmt::Display> {
+pub struct ReportCard<T: Display> {
     pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl<T> fmt::Display for ReportCard<T>
-where
-    T: fmt::Display,
-{
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.student_name)
-    }
-
-    fn print(&self) -> String {
+impl<T: Display> ReportCard<T> {
+    pub fn print(&self) -> String {
         format!(
             "{} ({}) - achieved a grade of {}",
             &self.student_name, &self.student_age, &self.grade
